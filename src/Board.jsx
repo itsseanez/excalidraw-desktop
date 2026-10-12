@@ -1,7 +1,7 @@
 import { useMemo, useRef } from "react";
 import { Excalidraw } from "@excalidraw/excalidraw";
 
-const STORAGE_KEY = "screen-board:scene";
+const STORAGE_KEY = "excalidraw-desktop:scene";
 
 function loadScene() {
   try {
