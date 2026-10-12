@@ -1,0 +1,46 @@
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.board,
+.overlay {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ---------- Overlay window: everything see-through except strokes ---------- */
+body[data-mode="overlay"],
+body[data-mode="overlay"] #root,
+body[data-mode="overlay"] .excalidraw,
+body[data-mode="overlay"] .excalidraw-container {
+  background: transparent !important;
+}
+
+/* In click-through mode, hide the toolbar so only your drawings show on camera */
+body[data-overlay-mode="passthrough"] .excalidraw .layer-ui__wrapper,
+body[data-overlay-mode="passthrough"] .excalidraw .App-menu,
+body[data-overlay-mode="passthrough"] .excalidraw .App-bottom-bar {
+  display: none !important;
+}
+
+.overlay-badge {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.75);
+  color: #fff;
+  font: 12px/1.4 system-ui, sans-serif;
+  pointer-events: none;
+  z-index: 10;
+}
+
+body[data-overlay-mode="passthrough"] .overlay-badge {
+  opacity: 0.4;
+}
