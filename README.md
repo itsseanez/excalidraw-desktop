@@ -3,6 +3,7 @@
 An unofficial desktop app for [Excalidraw](https://excalidraw.com), the open-source virtual whiteboard, with one extra trick: a transparent overlay that lets you draw directly on top of anything on your screen.
 
 It's the same Excalidraw you know from [excalidraw.com](https://excalidraw.com), running in its own window, plus a draw-over-your-screen mode built for recording videos and live explanations.
+![Excalidraw Desktop](assets/screenshot.jpg)
 
 ## Features
 
