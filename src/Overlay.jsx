@@ -1,12 +1,26 @@
 import { useEffect, useState } from "react";
 import { Excalidraw } from "@excalidraw/excalidraw";
 
+const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+// Follow the system light/dark setting, and switch live when it changes.
+function useSystemTheme() {
+  const [theme, setTheme] = useState(darkQuery.matches ? "dark" : "light");
+  useEffect(() => {
+    const onChange = (e) => setTheme(e.matches ? "dark" : "light");
+    darkQuery.addEventListener("change", onChange);
+    return () => darkQuery.removeEventListener("change", onChange);
+  }, []);
+  return theme;
+}
+
 // Transparent, full-screen drawing layer that sits on top of every app.
-// Light theme on purpose: dark theme inverts canvas colors, which would
-// change your stroke colors on screen.
+// Theme follows the system. In dark mode, like excalidraw.com, Excalidraw shifts
+// stroke colors so they read well on dark backgrounds (black strokes show as white).
 export default function Overlay() {
   const [api, setApi] = useState(null);
   const [mode, setMode] = useState("draw");
+  const theme = useSystemTheme();
 
   // Start with the pen tool selected.
   useEffect(() => {
@@ -31,9 +45,9 @@ export default function Overlay() {
     <div className="overlay">
       <Excalidraw
         excalidrawAPI={setApi}
+        theme={theme}
         initialData={{
           appState: {
-            theme: "light",
             viewBackgroundColor: "transparent",
             currentItemStrokeColor: "#e03131",
             currentItemStrokeWidth: 2,

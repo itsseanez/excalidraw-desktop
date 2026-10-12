@@ -3,7 +3,6 @@
 An unofficial desktop app for [Excalidraw](https://excalidraw.com), the open-source virtual whiteboard, with one extra trick: a transparent overlay that lets you draw directly on top of anything on your screen.
 
 It's the same Excalidraw you know from [excalidraw.com](https://excalidraw.com), running in its own window, plus a draw-over-your-screen mode built for recording videos and live explanations.
-![Excalidraw Desktop](assets/screenshot.jpg)
 
 ## Features
 
@@ -44,7 +43,7 @@ Starts Vite and opens the app with hot reload for everything in `src/`. Changes 
 
 - `electron/main.cjs` creates two windows: the whiteboard and the overlay. The overlay is transparent, frameless and always on top, and `setIgnoreMouseEvents()` makes clicks pass through in click-through mode.
 - `src/Overlay.jsx` renders Excalidraw with a transparent background and the pen tool selected.
-- The overlay uses Excalidraw's light theme on purpose: dark theme inverts the canvas, which would shift your stroke colors.
+- The overlay's theme follows your system light/dark setting and switches live when it changes. In dark mode, stroke colors look the same as in excalidraw.com's dark mode (black strokes show as white).
 - On macOS the overlay starts just below the menu bar, which always draws on top of other windows.
 
 ## Credits and license
